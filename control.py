@@ -69,7 +69,11 @@ def done():
             print ("riscaldamento pompa ")
             prewarm(wt)
         if event =="stop":
+<<<<<<< HEAD
             print("dovrebbe fermare la fase di vuoto in qualunque punto del ciclo ")
+=======
+            print("dovrebbe ferrmare la fase di vuoto in qualunque putno ")
+>>>>>>> 7a3e6a3c3410d9a2e20030a916c6b01d3f5ad691
 
 def vacuum_on(vacuum_time,soldier_time):
     print("inizio vuoto")
@@ -83,11 +87,21 @@ def vacuum_on(vacuum_time,soldier_time):
         vacuum_time  -= 1
     print ("spegnimento pompa") #DISATTIVAZIONE SOLENOIDE ELETTROVALVOLA RITEGNO E SOLENOIDE TELERUTTORE POMPA con ritardo
     vacuum_valve_off #solenoid_vacuum.OFF = LED(12) #pseudo
+<<<<<<< HEAD
     time.sleep(1)
     vacuum_coil_off #coil_actuator_pomp.OFF = LED(15) #pseudo
     soldier_on(st)
 
 def soldier_on(soldier_time):
+=======
+    time.sleep(0.5)
+    #coil_actuator_pomp.OFF = LED(15) #pseudo
+    vacuum_coil_off
+    soldier_on(st)
+
+def soldier_on(soldier_time):
+    #gv.win["time-to-end"].Update(soldier_time)
+>>>>>>> 7a3e6a3c3410d9a2e20030a916c6b01d3f5ad691
     print ("solenoid_vacuum.on")  #ATTIVAZIONE SOLENOIDE SISTEMA SALDATURA + SOLENOIDE BOBINA TRAFORMATORE RESISTENZE
     soldier_valve_on #solenoid_soldier.ON = LED(11)
     soldier_coil_on  #coil_actuator_soldier.ON = LED(18) #pseudo
@@ -95,11 +109,18 @@ def soldier_on(soldier_time):
         print (soldier_time)
         print("in fase di sigillatura")
         time.sleep(1)
+<<<<<<< HEAD
         soldier_time -= 1
     soldier_coil_off #coil_actuator_soldier.OFF = LED(18) #pseudo
     time.sleep(2)
     soldier_valve_off #soldier_valve.OFF = LED(12) #pseudo
     print("solenoid_soldier.off()") #DISATTIVAZIONE SOLENOIDE SISTEMA SALDATURA + SOLENOIDE BOBINA TRAFORMATORE RESISTENZE
+=======
+            soldier_time -= 1
+
+    print("solenoid_soldier.off()") #DISATTIVAZIONE SOLENOIDE SISTEMA SALDATURA + SOLENOIDE BOBINA TRAFORMATORE RESISTENZE
+    soldier_coil_off #coil_actuator_soldier.OFF = LED(18) #pseudo
+>>>>>>> 7a3e6a3c3410d9a2e20030a916c6b01d3f5ad691
     print ("sigillatura terminata")
 
     ### QUESTA PARTE DI METODO POTREBBE NON ESSERE NECESSARIA
