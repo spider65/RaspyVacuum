@@ -68,11 +68,13 @@ def done():
         if event == 'on-warm-pump':
             print ("riscaldamento pompa ")
             prewarm(wt)
+        if event =="stop":
+            print("dovrebbe ferrmare la fase di vuoto in qualunque putno sia")
 
 def vacuum_on(vacuum_time,soldier_time):
-
+    gv.win["status-vacuum"].Update("vuoto terminato")
     print("inizio vuoto")
-    st =soldier_time#solenoid_vacuum.ON = LED(12) #pseudo
+    st=soldier_time#solenoid_vacuum.ON = LED(12) #pseudo
     vacuum_valve_on
     #coil_actuator_pomp.ON = LED(15) #pseudo
     vacuum_coil_on
@@ -82,7 +84,6 @@ def vacuum_on(vacuum_time,soldier_time):
         #solenoid_vacuum.ON = LED(12) #pseudo
         time.sleep(1)
         vacuum_time  -= 1
-    print ("sottovuoto terminato")
     print ("spegnimento pompa") #DISATTIVAZIONE SOLENOIDE ELETTROVALVOLA RITEGNO E SOLENOIDE TELERUTTORE POMPA con ritardo
     #solenoid_vacuum.OFF = LED(12) #pseudo
     time.sleep(0.5)
@@ -91,6 +92,7 @@ def vacuum_on(vacuum_time,soldier_time):
     soldier_on(st)
 
 def soldier_on(soldier_time):
+    gv.win["status-vacuum"].Update("sigillatura terminata")
     print ("solenoid_vacuum.on")  #ATTIVAZIONE SOLENOIDE SISTEMA SALDATURA + SOLENOIDE BOBINA TRAFORMATORE RESISTENZE
     #coil_actuator_soldier.ON = LED(18) #pseudo
     soldier_valve_on
