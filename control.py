@@ -69,68 +69,53 @@ def done():
             print ("riscaldamento pompa ")
             prewarm(wt)
         if event =="stop":
-            print("dovrebbe ferrmare la fase di vuoto in qualunque putno sia")
+            print("dovrebbe fermare la fase di vuoto in qualunque putno ")
 
 def vacuum_on(vacuum_time,soldier_time):
-    gv.win["status-vacuum"].Update("vuoto terminato")
-    print("inizio vuoto")
-    st=soldier_time#solenoid_vacuum.ON = LED(12) #pseudo
-    vacuum_valve_on
-    #coil_actuator_pomp.ON = LED(15) #pseudo
-    vacuum_coil_on
+    st=soldier_time
+    vacuum_valve_on #solenoid_vacuum.ON = LED(12) #pseudo
+    vacuum_coil_on #coil_actuator_pomp.ON = LED(15) #pseudo
     while vacuum_time :
         print(vacuum_time)
-        print("in fase di sottovuoto") #ATTIVAZIONE SOLENOIDE ELETTROVALVOLA RITEGNO E SOLENOIDE TELERUTTORE POMPA
-        #solenoid_vacuum.ON = LED(12) #pseudo
+        print("in fase di sottovuoto")
         time.sleep(1)
         vacuum_time  -= 1
     print ("spegnimento pompa") #DISATTIVAZIONE SOLENOIDE ELETTROVALVOLA RITEGNO E SOLENOIDE TELERUTTORE POMPA con ritardo
-    #solenoid_vacuum.OFF = LED(12) #pseudo
-    time.sleep(0.5)
-    #coil_actuator_pomp.OFF = LED(15) #pseudo
-    vacuum_coil_off
+    vacuum_valve_off #solenoid_vacuum.OFF = LED(12) #pseudo
+    time.sleep(1)
+    vacuum_coil_off #coil_actuator_pomp.OFF = LED(15) #pseudo
     soldier_on(st)
 
 def soldier_on(soldier_time):
-    gv.win["status-vacuum"].Update("sigillatura terminata")
+    #gv.win["time-to-end"].Update(soldier_time)
     print ("solenoid_vacuum.on")  #ATTIVAZIONE SOLENOIDE SISTEMA SALDATURA + SOLENOIDE BOBINA TRAFORMATORE RESISTENZE
-    #coil_actuator_soldier.ON = LED(18) #pseudo
-    soldier_valve_on
-    #solenoid_soldier.ON = LED(11) #pseudo
-    soldier_coil_on
+    soldier_valve_on #solenoid_soldier.ON = LED(11)
+    soldier_coil_on  #coil_actuator_soldier.ON = LED(18) #pseudo
     while soldier_time:
         print (soldier_time)
         print("in fase di sigillatura")
         time.sleep(1)
         soldier_time -= 1
-
-    print("solenoid_soldier.off()") #DISATTIVAZIONE SOLENOIDE SISTEMA SALDATURA + SOLENOIDE BOBINA TRAFORMATORE RESISTENZE
-    #coil_actuator_soldier.OFF = LED(18) #pseudo
-    soldier_coil_off
+        soldier_coil_off #coil_actuator_soldier.OFF = LED(18) #pseudo
+        time.sleep(2)
+        soldier_valve_off #soldier_valve.OFF = LED(12) #pseudo
     print ("sigillatura terminata")
+
     ### QUESTA PARTE DI METODO POTREBBE NON ESSERE NECESSARIA
-    time.sleep(1)
     print ("apertura valvola vuoto") #ATTIVAZIONE SOLENOIDE ELETTROVALVOLA DI RITEGNO
-    #solenoid_vacuum.ON = LED(12) #pseudo
-    soldier_valve_off
-    #time.sleep(1)
-    #solenoid_vacuum.OFF = LED(12) #pseudo
-    #time.sleep(5)
+    vacuum_valve_on #solenoid_vacuum.ON = LED(12) #pseudo
+    time.sleep(1)
+    vacuum_valve_off #solenoid_vacuum.OFF = LED(12) #pseudo
 
 def prewarm(prewarm_time):
     gv.win["status-vacuum"].Update("preriscaldamento effettuato")
-    print("in fase di preriscaldamento") #ATTIVAZIONE SOLENOIDE TELERUTTORE POMPA
-    vacuum_coil_on
-    #coil_actuator_pomp.ON = LED(15) #pseudo
+    vacuum_coil_on #coil_actuator_pomp.ON = LED(15) #pseudo
     while prewarm_time:
-        print("in fase di preriscaldamento")
         print (prewarm_time)
+        print("in fase di preriscaldamento")
         time.sleep(1)
         prewarm_time -= 1
-        vacuum_coil_off
-    print ("preriscaldamento terminata") #DISATTIVAZIONE SOLENOIDE TELERUTTORE POMPA
-    #coil_actuator_pomp.OFF = LED(15) #pseudo
-    #pm.vacuum_coil_off()
-
+        vacuum_coil_off #coil_actuator_pomp.OFF = LED(15) #pseudo
+    print ("preriscaldamento terminata")
 
 start()
