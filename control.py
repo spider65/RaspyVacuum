@@ -39,6 +39,7 @@ def start():
         soldier_valve_off=pm.soldier_valve_off()
         soldier_coil_on=pm.soldier_coil_on()
         soldier_coil_off=pm.soldier_coil_off()
+
         done()
 
     if start == "w":
@@ -62,20 +63,15 @@ def done():
         vt=value['vacuum-time']
         st=value['soldier-time']
         wt=value['warm-pump-time']
-            #gv.update()
-        #vacuum_on("",vt)
+        if event=="start": #questo evento va sostituito con lo when_pressed del coperchio
+            vacuum_on(vt,st)
         if event == 'on-warm-pump':
             print ("riscaldamento pompa ")
             prewarm(wt)
 
-        start=""
-        start=input()
-        if start=="s":
-            print("inizio vuoto")
-            #mock()
-            vacuum_on(vt,st)
-
 def vacuum_on(vacuum_time,soldier_time):
+
+    print("inizio vuoto")
     st =soldier_time#solenoid_vacuum.ON = LED(12) #pseudo
     vacuum_valve_on
     #coil_actuator_pomp.ON = LED(15) #pseudo
@@ -133,18 +129,6 @@ def prewarm(prewarm_time):
     print ("preriscaldamento terminata") #DISATTIVAZIONE SOLENOIDE TELERUTTORE POMPA
     #coil_actuator_pomp.OFF = LED(15) #pseudo
     #pm.vacuum_coil_off()
-"""
-while True:
-    event, values= gv.win.Read(timeout=0)
-    value=values
-    vt=value['vacuum-time']
-    st=value['soldier-time']
-    wt=value['warm-pump-time']
-        #gv.update()
-    #vacuum_on("",vt)
 
-    if event == 'on-warm-pump':
-        print ("riscaldamento pompa ")
-        prewarm(wt)"""
 
 start()

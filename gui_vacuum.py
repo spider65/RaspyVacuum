@@ -13,7 +13,7 @@ layout = [
             [
                 sg.Frame(layout=([[
                     sg.Slider(range =(1,120), default_value=5, orientation='horizontal', key="vacuum-time", size=(20, 15),tooltip='imposta il tempo di vuoto')
-                ]]), title="DURATA VUOTO", pad=(3, 1)), sg.Button((""),key="stop", button_color=("white","red"), image_filename="/home/raniero/RaspyVacuum/stop.png", image_size=(110,110))
+                ]]), title="DURATA VUOTO", pad=(3, 1)), sg.Button(("Start"),key="start", size=(2,1)),sg.Button((""),key="stop", button_color=("white","red"), image_filename="/home/raniero/RaspyVacuum/RaspyVacuum/stop.png", image_size=(110,110))
             ],
             [
                 sg.Frame(layout=([[
