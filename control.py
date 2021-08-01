@@ -79,7 +79,8 @@ def done():
         wt=value['warm-pump-time']
         #if event=="start": #questo evento va sostituito con lo when_pressed del coperchio
         pm.micro_cop_on()
-        if micro_cop.value ==1:
+        if pm.micro_cop.value == 0:
+            print (pm.micro_cop.value)
             vacuum_on(vt,st)
         if event == 'on-warm-pump':
             print ("riscaldamento pompa ")

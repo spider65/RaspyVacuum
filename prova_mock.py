@@ -71,6 +71,6 @@ def soldier_coil_off():
 def micro_cop_on():
     chiudi =input()
     if chiudi =="c":
-        micro_cop.switch.pin.drive_high()
-        print ("coperchio chiuso")
-    return True
+        micro_cop.pin.drive_high()
+        print (micro_cop.value,"coperchio chiuso")
+        return True
