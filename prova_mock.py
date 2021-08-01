@@ -18,10 +18,16 @@ soldier_coil= LED("20")
 micro_cop= Button("21")
 
 def vacuum_valve_on():
-    print("siamo in prova mock")
-    print(vacuum_valve.value,"vacuum valve off")
+    if vacuum_valve.value == 0:
+        print (vacuum_valve.value,"valvola chiusa")
+    if vacuum_valve.value == 1:
+        print (vacuum_valve.value,"valvola aperta")
     vacuum_valve.on()
-    print(vacuum_valve.value,"vacuum valve on")
+    if vacuum_valve.value == 0:
+        print (vacuum_valve.value,"valvola chiusa")
+    if vacuum_valve.value == 1:
+        print (vacuum_valve.value,"valvola aperta")
+
     #vacuum_valve.pin.drive_high(1)
     return True
 
@@ -31,9 +37,9 @@ def vacuum_valve_off():
     return True
 
 def vacuum_coil_on():
-    print(vacuum_coil.value,"vacuum coli off")
+    print(vacuum_coil.value,"vacuum coil off")
     vacuum_coil.on()
-    print(vacuum_coil.value,"vacuum coli on")
+    print(vacuum_coil.value,"vacuum coil on")
     print("teleruttore pompa on")
     return
 
@@ -63,6 +69,8 @@ def soldier_coil_off():
     return True
 
 def micro_cop_on():
-    micro_cop.switch.pin.drive_high()
-    print ("coperchio chiuso")
+    chiudi =input()
+    if chiudi =="c":
+        micro_cop.switch.pin.drive_high()
+        print ("coperchio chiuso")
     return True
