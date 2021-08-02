@@ -70,14 +70,3 @@ def micro_cop_on():
     micro.pin.drive_low()
     print (micro.value,"coperchio chiuso")
     return
-
-
-
-    #print (micro_cop.value,"coperchio chiuso")
-    #return
-
-"""chiudi =input()
-    if chiudi =="c":
-        micro_cop.pin.drive_low()
-        print (micro_cop.value,"coperchio chiuso")
-        return True"""
