@@ -39,7 +39,7 @@ layout = [
 
     ]
 
-win = sg.Window('Vaccum control By Tiranno', layout,[[]], resizable = False, auto_size_buttons=True, margins=(2,2), no_titlebar=True)
+win = sg.Window('Vaccum control By Tiranno', layout,[[]], resizable = False, auto_size_buttons=True, margins=(2,2), no_titlebar=True, element_justification="center")
 progress_bar_vac = win['progressbar_vac']
 progress_bar_sig = win['progressbar_sig']
 progress_bar_pre = win['progressbar_pre']
