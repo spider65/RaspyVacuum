@@ -15,32 +15,30 @@ soldier_valve= LED("26")
 soldier_coil= LED("20")
 
 #pin 40 per segnale micro coperchio
-micro_cop= Button("21")
+#micro_cop= Button("21")
+micro = Button(21)
+#micro_cop.when_pressed = micro_cop_on()
+
+print (vacuum_valve.value, "stato valvola vuoto" )
+print (vacuum_coil.value, "stato coil vuoto" )
+print (soldier_valve.value, "stato valvola soldier")
+print (soldier_coil.value, "stato coil soldier")
+print (micro.value, "stato switch coperchio")
 
 def vacuum_valve_on():
-    if vacuum_valve.value == 0:
-        print (vacuum_valve.value,"valvola chiusa")
-    if vacuum_valve.value == 1:
-        print (vacuum_valve.value,"valvola aperta")
     vacuum_valve.on()
-    if vacuum_valve.value == 0:
-        print (vacuum_valve.value,"valvola chiusa")
-    if vacuum_valve.value == 1:
-        print (vacuum_valve.value,"valvola aperta")
-
+    print (vacuum_valve.value,"valvola vuoto aperta")
     #vacuum_valve.pin.drive_high(1)
     return True
 
 def vacuum_valve_off():
     vacuum_valve.off()
-    print(vacuum_valve.value,"vacuum valve off")
+    print(vacuum_valve.value,"valvola vuoto chiusa")
     return True
 
 def vacuum_coil_on():
-    print(vacuum_coil.value,"vacuum coil off")
     vacuum_coil.on()
-    print(vacuum_coil.value,"vacuum coil on")
-    print("teleruttore pompa on")
+    print(vacuum_coil.value,"teleruttore pompa on")
     return
 
 def vacuum_coil_off():
@@ -50,27 +48,36 @@ def vacuum_coil_off():
 
 def soldier_valve_on():
     soldier_valve.on()
-    print (soldier_valve.value, "soldier valve on")
+    print (soldier_valve.value, "valvola saldatura aperta")
     return True
 
 def soldier_valve_off():
     soldier_valve.off()
-    print (soldier_valve.value, "soldier valve off")
+    print (soldier_valve.value, "valvola saldatura chiusa")
     return True
 
 def soldier_coil_on():
     soldier_coil.on()
-    print (soldier_coil.value,"soldier teleruttore on")
+    print (soldier_coil.value,"teleruttore saldatura on")
     return True
 
 def soldier_coil_off():
     soldier_coil.off()
-    print (soldier_coil.value,"soldier teleruttore on")
+    print (soldier_coil.value,"teleruttore saldatura off")
     return True
 
 def micro_cop_on():
-    chiudi =input()
+    micro.pin.drive_low()
+    print (micro.value,"coperchio chiuso")
+    return
+
+
+
+    #print (micro_cop.value,"coperchio chiuso")
+    #return
+
+"""chiudi =input()
     if chiudi =="c":
-        micro_cop.pin.drive_high()
+        micro_cop.pin.drive_low()
         print (micro_cop.value,"coperchio chiuso")
-        return True
+        return True"""

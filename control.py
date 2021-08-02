@@ -10,77 +10,27 @@ import vacuum_status
 gv=gui_vacuum
 vs=vacuum_status
 start_mock=""
-"""
-vacuum_valve_on=""
-vacuum_valve_off=""
-vacuum_coil_on=""
-vacuum_coil_off=""
-soldier_valve_on=""
-soldier_valve_off=""
-soldier_coil_on=""
-soldier_coil_off=""
-"""
+
 from gpiozero import Device
 from gpiozero.pins.mock import MockFactory
 import prova_mock
 pm=prova_mock
-
-"""vacuum_valve_on=pm.vacuum_valve_on()
-vacuum_valve_off=pm.vacuum_valve_off()
-vacuum_coil_on=pm.vacuum_coil_on()
-vacuum_coil_off=pm.vacuum_coil_off()
-soldier_valve_on=pm.soldier_valve_on()
-soldier_valve_off=pm.soldier_valve_off()
-soldier_coil_on=pm.soldier_coil_on()
-soldier_coil_off=pm.soldier_coil_off()
-
-def start():
-    start=input()
-    if start == "m":
-        print("mock")
-        from gpiozero import Device
-        from gpiozero.pins.mock import MockFactory
-        import prova_mock
-        pm=prova_mock
-
-        if Device.pin_factory is not None:
-            Device.pin_factory.reset()
-        Device.pin_factory = MockFactory()
-        vacuum_valve_on=pm.vacuum_valve_on()
-        vacuum_valve_off=pm.vacuum_valve_off()
-        vacuum_coil_on=pm.vacuum_coil_on()
-        vacuum_coil_off=pm.vacuum_coil_off()
-        soldier_valve_on=pm.soldier_valve_on()
-        soldier_valve_off=pm.soldier_valve_off()
-        soldier_coil_on=pm.soldier_coil_on()
-        soldier_coil_off=pm.soldier_coil_off()
-
-        done()
-
-    if start == "w":
-        print ("start work")
-        start =input()
-        vacuum_valve_on=vs.vacuum_valve_on()
-        vacuum_valve_off=vs.vacuum_valve_off()
-        vacuum_coil_on=vs.vacuum_coil_on()
-        vacuum_coil_off=vs.vacuum_coil_off()
-        soldier_valve_on=vs.soldier_valve_on()
-        soldier_valve_off=vs.soldier_valve_off()
-        soldier_coil_on=vs.soldier_coil_on()
-        soldier_coil_off=vs.soldier_coil_off()
-        done()"""
+start=input()
+if start == "p":
+    pm.micro.when_pressed=pm.micro_cop_on
 
 def done():
+    start=input()
+    if start == "p":
+        pm.micro.when_pressed=pm.micro_cop_on
+
     while True:
         event, values= gv.win.Read(timeout=0.1)
         value=values
         vt=value['vacuum-time']
         st=value['soldier-time']
         wt=value['warm-pump-time']
-        #if event=="start": #questo evento va sostituito con lo when_pressed del coperchio
-        pm.micro_cop_on()
-        if pm.micro_cop.value == 0:
-            print (pm.micro_cop.value)
+        if event=="start": #questo evento va sostituito con lo when_pressed del coperchio
             vacuum_on(vt,st)
         if event == 'on-warm-pump':
             print ("riscaldamento pompa ")
