@@ -12,7 +12,7 @@ layout = [
             [sg.Text('Vacuum Control by Tiranno', font=("orbitron", 12),size=(25, 1), justification='center')],
             [
                 sg.Frame(layout=([[
-                    sg.Button(("Start"),key="start", size=(2,1)),sg.Button((""),key="stop", button_color=("white","red"), image_filename="/home/raniero/RaspyVacuum/RaspyVacuum/stop.png", image_size=(80,80)),
+                    sg.Button(("Start"),key="start", size=(2,1)),sg.Button((""),key="stop", button_color=("white","red")),
                 ]]), title="POMPA",font=("orbitron", 8), pad=(3, 1)),
                 sg.Frame(layout=([[
                     sg.Button('On', key="on-warm-pump", disabled=False, size=(6, 5), tooltip="accende la pompa per riscaldamento")
