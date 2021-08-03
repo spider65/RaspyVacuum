@@ -15,26 +15,26 @@ layout = [
                     sg.Button(("Start"),key="start", size=(2,1)),sg.Button((""),key="stop", button_color=("white","red")),
                 ]]), title="POMPA",font=("orbitron", 8), pad=(3, 1)),
                 sg.Frame(layout=([[
-                    sg.Button('On', key="on-warm-pump", disabled=False, size=(6, 5), tooltip="accende la pompa per riscaldamento")
-                ]]), title="PREWARM", font=("orbitron", 8), pad=(3,1))
+                    sg.Button('On', key="on-warm-pump", disabled=False, size=(20, 5), tooltip="accende la pompa per riscaldamento")
+                ]]), title="PREWARM", font=("orbitron", 8), pad=(3,2))
             ],
             [
                 sg.Frame(layout=([[
-                sg.Slider(range =(1,120), default_value=5, orientation='horizontal', key="vacuum-time", size=(20, 15),font=("orbitron", 8),tooltip='imposta il tempo di vuoto'),
-                sg.ProgressBar(120, orientation='h', size=(10, 10), key='progressbar_vac', bar_color=("red","white"))
-                ]]), title="DURATA VUOTO", font=("orbitron", 8),pad=(3, 1)),
+                sg.Slider(range =(1,120), default_value=5, orientation='horizontal', key="vacuum-time", size=(30,30),font=("orbitron", 12),tooltip='imposta il tempo di vuoto'),
+                sg.ProgressBar(120, orientation='h', size=(35,30), key='progressbar_vac', bar_color=("red","white"))
+                ]]), title="DURATA VUOTO", font=("orbitron",12),pad=(3, 2)),
             ],
             [
                 sg.Frame(layout=([[
-                    sg.Slider(range =(1,120), default_value=5, orientation='horizontal', key="soldier-time", size=(20, 15), font=("orbitron", 8),tooltip='imposta il tempo di sigillatura'),
-                    sg.ProgressBar(120, orientation='h', size=(10,10), key='progressbar_sig', bar_color=("red","white"))
-                ]]), title="DURATA SIGILLATURA",font=("orbitron", 8), pad=(3, 1)),
+                    sg.Slider(range =(1,120), default_value=20, orientation='horizontal', key="soldier-time", size=(30,30), font=("orbitron", 12),tooltip='imposta il tempo di sigillatura'),
+                    sg.ProgressBar(120, orientation='h', size=(35,30), key='progressbar_sig', bar_color=("red","white"))
+                ]]), title="DURATA SIGILLATURA",font=("orbitron", 12), pad=(3, 2)),
             ],
             [
                 sg.Frame(layout=([[
-                    sg.Slider(range =(1,120), default_value=5, orientation='horizontal', key="warm-pump-time", size=(20, 15),font=("orbitron", 8),tooltip='imposta il tempo di preriscaldamento'),
-                    sg.ProgressBar(120, orientation='h', size=(10, 10), key='progressbar_pre', bar_color=("red","white"))
-                ]]), title="PRERISCALDAMENTO",font=("orbitron", 8), pad=(3,1)),
+                    sg.Slider(range =(1,120), default_value=30, orientation='horizontal', key="warm-pump-time", size=(30, 30),font=("orbitron", 12),tooltip='imposta il tempo di preriscaldamento'),
+                    sg.ProgressBar(120, orientation='h', size=(35,30), key='progressbar_pre', bar_color=("red","white"))
+                ]]), title="PRERISCALDAMENTO",font=("orbitron", 12), pad=(3,1)),
             ],
 
     ]
