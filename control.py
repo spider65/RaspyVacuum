@@ -6,7 +6,6 @@ from signal import pause
 import gui_vacuum
 import vacuum_status
 
-
 gv=gui_vacuum
 vs=vacuum_status
 start_mock=""
@@ -31,22 +30,22 @@ def done():
         st=value['soldier-time']
         wt=value['warm-pump-time']
         if event=="start": #questo evento va sostituito con lo when_pressed del coperchio
-            vacuum_on(vt,st)
+            vacuum_on(vt,st,event,values)
         if event == 'on-warm-pump':
             print ("riscaldamento pompa ")
             prewarm(wt)
         if event =="stop":
             print("dovrebbe fermare la fase di vuoto in qualunque punto del ciclo ")
 
-def vacuum_on(vacuum_time,soldier_time):
-    if pm.vacuum_valve.value and pm.vacuum_coil.value ==0:
+def vacuum_on(vacuum_time,soldier_time,event,values):
+    if pm.vacuum_valve.value == 0 and pm.vacuum_coil.value == 0:
         print("inizio vuoto - accensione pompa")
     else:
-        print("anomalia")
+        print("anomalia valvole vuoto")
     st=soldier_time #solenoid_vacuum.ON = LED(12) #pseudo
     pm.vacuum_valve_on() #solenoid_vacuum.ON = LED(12) #pseudo
     pm.vacuum_coil_on()#coil_actuator_pomp.ON = LED(15) #pseudo
-    if pm.vacuum_valve.value and pm.vacuum_coil.value ==1:
+    if pm.vacuum_valve.value ==1 and pm.vacuum_coil.value ==1:
         for i in reversed(range(1, int(vacuum_time))):
             gv.progress_bar_vac.UpdateBar((i-1) + 1)
             time.sleep(1 - vacuum_time % 1) # sleep until a whole second boundary
@@ -65,7 +64,7 @@ def soldier_on(soldier_time):
     print ("inizio sigillatura, accensione saldatore")  #ATTIVAZIONE SOLENOIDE SISTEMA SALDATURA + SOLENOIDE BOBINA TRAFORMATORE RESISTENZE
     pm.soldier_valve_on() #solenoid_soldier.ON = LED(11)
     pm.soldier_coil_on()
-    if pm.soldier_valve.value and pm.soldier_coil.value ==1:  #coil_actuator_soldier.ON = LED(18) #pseudo
+    if pm.soldier_valve.value ==1 and pm.soldier_coil.value ==1:  #coil_actuator_soldier.ON = LED(18) #pseudo
         for i in reversed(range(1, int(soldier_time))):
             gv.progress_bar_sig.UpdateBar((i-1) + 1)
             time.sleep(1 - soldier_time % 1) # sleep until a whole second boundary
