@@ -13,6 +13,7 @@ start_mock=""
 vt=5
 st=5
 if vs.micro_cop.when_pressed:
+    print ("premuto")
     vacuum_on(vt,st)
 
 def done():
