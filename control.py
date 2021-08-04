@@ -5,6 +5,7 @@ from gpiozero import LED
 from signal import pause
 import gui_vacuum
 import vacuum_status
+from subprocess import call
 
 gv=gui_vacuum
 vs=vacuum_status
@@ -36,6 +37,9 @@ def done():
             prewarm(wt)
         if event =="stop":
             print("dovrebbe fermare la fase di vuoto in qualunque punto del ciclo ")
+        if event =="shutdown":
+            print ("spegimento raspberry")
+            sudo_halt()
 
 def vacuum_on(vacuum_time,soldier_time,event,values):
     if pm.vacuum_valve.value == 0 and pm.vacuum_coil.value == 0:
@@ -100,6 +104,8 @@ def prewarm(prewarm_time):
         print ("preriscaldamento terminata")
     else:
         print ("anomalia")
+def sudo_halt():       
+    call("sudo nohup shutdown -h now", shell=True)
 
 done()
 #start()
