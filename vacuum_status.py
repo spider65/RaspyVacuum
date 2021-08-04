@@ -15,8 +15,7 @@ soldier_coil= LED("20")
 
 #pin 40 per segnale micro coperchio
 micro_cop  = Button("21")
-micro_cop.wait_for_press()
-pritn("premuto")
+
 def vacuum_valve_on():
     vacuum_valve.on()
     print (vacuum_valve.value,"valvola vuoto aperta")
