@@ -14,7 +14,7 @@ vt=5
 st=5
 def ciccio():
     print("mario")
-vs.micro_cop.when_pressed=vacuum_on
+
 
 def done():
     while True:
@@ -55,6 +55,7 @@ def vacuum_on(vacuum_time,soldier_time):
     if vs.vacuum_coil.value ==0:
          #coil_actuator_pomp.OFF = LED(15) #pseudo
         soldier_on(st)
+vs.micro_cop.when_pressed=vacuum_on
 
 def soldier_on(soldier_time):
     print ("inizio sigillatura, accensione saldatore")  #ATTIVAZIONE SOLENOIDE SISTEMA SALDATURA + SOLENOIDE BOBINA TRAFORMATORE RESISTENZE
