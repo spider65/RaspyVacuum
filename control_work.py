@@ -10,31 +10,32 @@ from subprocess import call
 gv=gui_vacuum
 vs=vacuum_status
 start_mock=""
+vt=5
+st=5
+if vs.micro_cop.when_pressed:
+    vacuum_on(vt,st)
 
-def done():
-    if vs.micro_cop.when_pressed:
-        vs.micro_cop_on()
-
-        while True:
-            event, values= gv.win.Read(timeout=0.1)
-            value=values
-            vt=value['vacuum-time']
-            st=value['soldier-time']
-            #if event=="start": #questo evento va sostituito con lo when_pressed del coperchio
-            vacuum_on(vt,st)
-    else:
-        while True:
-            event, values= gv.win.Read(timeout=0.1)
-            value=values
-            wt=value['warm-pump-time']
-            if event == 'on-warm-pump':
-                print ("riscaldamento pompa ")
-                prewarm(wt)
-            if event =="stop":
-                print("dovrebbe fermare la fase di vuoto in qualunque punto del ciclo ")
-            if event =="shutdown":
-                print ("spegimento raspberry")
-                sudo_halt()
+def done():        
+    while True:
+        event, values= gv.win.Read(timeout=0.1)
+        value=values
+        vt=value['vacuum-time']
+        st=value['soldier-time']
+        #if event=="start": #questo evento va sostituito con lo when_pressed del coperchio
+        vacuum_on(vt,st)
+else:
+    while True:
+        event, values= gv.win.Read(timeout=0.1)
+        value=values
+        wt=value['warm-pump-time']
+        if event == 'on-warm-pump':
+            print ("riscaldamento pompa ")
+            prewarm(wt)
+        if event =="stop":
+            print("dovrebbe fermare la fase di vuoto in qualunque punto del ciclo ")
+        if event =="shutdown":
+            print ("spegimento raspberry")
+            sudo_halt()
 
 def vacuum_on(vacuum_time,soldier_time):
     if vs.vacuum_valve.value == 0 and vs.vacuum_coil.value == 0:

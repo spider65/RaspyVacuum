@@ -30,13 +30,13 @@ layout = [
             ],
             [
                 sg.Frame(layout=([[
-                    sg.Slider(range =(1,120), default_value=20, orientation='horizontal', key="soldier-time", size=(30,30), font=("orbitron", 12),tooltip='imposta il tempo di sigillatura'),
+                    sg.Slider(range =(1,120), default_value=5, orientation='horizontal', key="soldier-time", size=(30,30), font=("orbitron", 12),tooltip='imposta il tempo di sigillatura'),
                     sg.ProgressBar(120, orientation='h', size=(35,30), key='progressbar_sig', bar_color=("red","white"))
                 ]]), title="DURATA SIGILLATURA",font=("orbitron", 12), pad=(3, 2)),
             ],
             [
                 sg.Frame(layout=([[
-                    sg.Slider(range =(1,120), default_value=30, orientation='horizontal', key="warm-pump-time", size=(30, 30),font=("orbitron", 12),tooltip='imposta il tempo di preriscaldamento'),
+                    sg.Slider(range =(1,120), default_value=15, orientation='horizontal', key="warm-pump-time", size=(30, 30),font=("orbitron", 12),tooltip='imposta il tempo di preriscaldamento'),
                     sg.ProgressBar(120, orientation='h', size=(35,30), key='progressbar_pre', bar_color=("red","white"))
                 ]]), title="PRERISCALDAMENTO",font=("orbitron", 12), pad=(3,1)),
             ],
