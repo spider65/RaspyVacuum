@@ -12,11 +12,14 @@ layout = [
             [sg.Text('Vacuum Control by Tiranno', font=("orbitron", 12),size=(25, 1), justification='center')],
             [
                 sg.Frame(layout=([[
-                    sg.Button(("Start"),key="start", size=(2,1)),sg.Button((""),key="stop", button_color=("white","red")),
-                ]]), title="POMPA",font=("orbitron", 8), pad=(3, 1)),
+                    sg.Button(("STOP POMPA"),key="start", size=(12,5),font=("orbitron", 15), button_color=("white","red")),
+                ]]), title="POMPA",font=("orbitron", 12), pad=(5, 5)),
                 sg.Frame(layout=([[
-                    sg.Button('On', key="on-warm-pump", disabled=False, size=(20, 5), tooltip="accende la pompa per riscaldamento")
-                ]]), title="PREWARM", font=("orbitron", 8), pad=(3,2))
+                    sg.Button('PREWARM', key="on-warm-pump", disabled=False, size=(12, 5),font=("orbitron", 15), tooltip="accende la pompa per riscaldamento")
+                ]]), title="PREWARM", font=("orbitron", 12), pad=(5,5)),
+                sg.Frame(layout=([[
+                    sg.Button(("SHUTDOWN"),key="shutdown", size=(12,5), font=("orbitron", 15), button_color=("red","white")),
+                ]]), title="SISTEMA",font=("orbitron", 12), pad=(5, 5)),
             ],
             [
                 sg.Frame(layout=([[
