@@ -14,7 +14,7 @@ vt=5
 st=5
 def ciccio():
     print("mario")
-vs.micro_cop.when_pressed=ciccio
+vs.micro_cop.when_pressed=vacuum_on
 
 def done():
     while True:
