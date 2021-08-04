@@ -58,6 +58,8 @@ def soldier_coil_off():
     return True
 
 def micro_cop_on():
-    micro.pin.drive_low()
-    print (micro.value,"coperchio chiuso")
+    if micro.pin.drive_low():
+        print (micro.value,"coperchio chiuso")
+    if micro.pin.drive_high():
+        print (micro.value,"coperchio aperto")    
     return

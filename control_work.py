@@ -12,12 +12,7 @@ vs=vacuum_status
 start_mock=""
 vt=5
 st=5
-if vs.micro_cop == GPIO.HIGH:
-    print ("premuto")
-    #vacuum_on(vt,st)
-if vs.micro_cop == GPIO.LOW:
-    print ("NON premuto")
-    #vacuum_on(vt,st)
+vs.micro_cop_on()    #vacuum_on(vt,st)
 
 def done():
     while True:
