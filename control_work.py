@@ -20,8 +20,8 @@ def done():
         vt=value['vacuum-time']
         st=value['soldier-time']
         wt=value['warm-pump-time']
-        #f event=="start": #questo evento va sostituito con lo when_pressed del coperchio
-            #vacuum_on(vt,st)
+        if event=="start": #questo evento va sostituito con lo when_pressed del coperchio
+            vacuum_on(vt,st)
         if event == 'on-warm-pump':
             print ("riscaldamento pompa ")
             prewarm(wt)
@@ -30,33 +30,32 @@ def done():
         if event =="shutdown":
             print ("spegimento raspberry")
             sudo_halt()
-        vacuum_on(vt,st)
-    #if vs.micro_cop.when_pressed:
 
+    if vs.micro_cop.when_pressed:
+        vacuum_on(vt,st)
 
 def vacuum_on(vacuum_time,soldier_time):
-    if vs.micro_cop.when_pressed:
-        if vs.vacuum_valve.value == 0 and vs.vacuum_coil.value == 0:
-            print("inizio vuoto - accensione pompa")
-        else:
-            print("anomalia valvole vuoto")
-        st=soldier_time #solenoid_vacuum.ON = LED(12) #pseudo
-        vs.vacuum_valve_on() #solenoid_vacuum.ON = LED(12) #pseudo
-        vs.vacuum_coil_on()#coil_actuator_pomp.ON = LED(15) #pseudo
-        if vs.vacuum_valve.value ==1 and vs.vacuum_coil.value ==1:
-            for i in reversed(range(1, int(vacuum_time))):
-                gv.progress_bar_vac.UpdateBar(i-1)
-                time.sleep(1 - vacuum_time % 1) # sleep until a whole second boundary
-                sys.stderr.write('\r%4d' % i)
-        print ("fine vuoto - spegnimento pompa") #DISATTIVAZIONE SOLENOIDE ELETTROVALVOLA RITEGNO E SOLENOIDE TELERUTTORE POMPA con ritardo
-        vs.vacuum_valve_off() #solenoid_vacuum.OFF = LED(12) #pseudo
-        if vs.vacuum_valve.value ==0:
-            print ("fine vuoto - spegnimento pompa")
-        time.sleep(1)
-        vs.vacuum_coil_off()
-        if vs.vacuum_coil.value ==0:
-             #coil_actuator_pomp.OFF = LED(15) #pseudo
-            soldier_on(st)
+    if vs.vacuum_valve.value == 0 and vs.vacuum_coil.value == 0:
+        print("inizio vuoto - accensione pompa")
+    else:
+        print("anomalia valvole vuoto")
+    st=soldier_time #solenoid_vacuum.ON = LED(12) #pseudo
+    vs.vacuum_valve_on() #solenoid_vacuum.ON = LED(12) #pseudo
+    vs.vacuum_coil_on()#coil_actuator_pomp.ON = LED(15) #pseudo
+    if vs.vacuum_valve.value ==1 and vs.vacuum_coil.value ==1:
+        for i in reversed(range(1, int(vacuum_time))):
+            gv.progress_bar_vac.UpdateBar(i-1)
+            time.sleep(1 - vacuum_time % 1) # sleep until a whole second boundary
+            sys.stderr.write('\r%4d' % i)
+    print ("fine vuoto - spegnimento pompa") #DISATTIVAZIONE SOLENOIDE ELETTROVALVOLA RITEGNO E SOLENOIDE TELERUTTORE POMPA con ritardo
+    vs.vacuum_valve_off() #solenoid_vacuum.OFF = LED(12) #pseudo
+    if vs.vacuum_valve.value ==0:
+        print ("fine vuoto - spegnimento pompa")
+    time.sleep(1)
+    vs.vacuum_coil_off()
+    if vs.vacuum_coil.value ==0:
+         #coil_actuator_pomp.OFF = LED(15) #pseudo
+        soldier_on(st)
 
 def soldier_on(soldier_time):
     print ("inizio sigillatura, accensione saldatore")  #ATTIVAZIONE SOLENOIDE SISTEMA SALDATURA + SOLENOIDE BOBINA TRAFORMATORE RESISTENZE
