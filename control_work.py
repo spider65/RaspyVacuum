@@ -10,7 +10,8 @@ from subprocess import call
 gv=gui_vacuum
 vs=vacuum_status
 start_mock=""
-
+if vs.micro_cop.when_pressed:
+    vacuum_on(vt,st)
 def done():
 
     while True:
@@ -20,7 +21,7 @@ def done():
         st=value['soldier-time']
         wt=value['warm-pump-time']
         if event=="start": #questo evento va sostituito con lo when_pressed del coperchio
-            vacuum_on(vt,st,event,values)
+            vacuum_on(vt,st)
         if event == 'on-warm-pump':
             print ("riscaldamento pompa ")
             prewarm(wt)
@@ -31,7 +32,7 @@ def done():
             sudo_halt()
 
     if vs.micro_cop.when_pressed:
-        vacuum_on(vt,st,event,values)
+        vacuum_on(vt,st)
 
 def vacuum_on(vacuum_time,soldier_time,event,values):
     if vs.vacuum_valve.value == 0 and vs.vacuum_coil.value == 0:
