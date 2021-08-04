@@ -10,8 +10,7 @@ from subprocess import call
 gv=gui_vacuum
 vs=vacuum_status
 start_mock=""
-if vs.micro_cop.when_pressed:
-    vacuum_on(vt,st)
+
 def done():
 
     while True:
@@ -30,9 +29,6 @@ def done():
         if event =="shutdown":
             print ("spegimento raspberry")
             sudo_halt()
-
-    if vs.micro_cop.when_pressed:
-        vacuum_on(vt,st)
 
 def vacuum_on(vacuum_time,soldier_time):
     if vs.vacuum_valve.value == 0 and vs.vacuum_coil.value == 0:
