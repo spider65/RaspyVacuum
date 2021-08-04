@@ -15,7 +15,7 @@ soldier_coil= LED("20")
 
 #pin 40 per segnale micro coperchio
 micro_cop  = Button("21")
-micro_cop.when_pressed()
+micro_cop.wait_for_press()
 pritn("premuto")
 def vacuum_valve_on():
     vacuum_valve.on()
