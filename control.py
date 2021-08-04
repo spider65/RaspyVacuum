@@ -5,6 +5,7 @@ from gpiozero import LED
 from signal import pause
 import gui_vacuum
 import vacuum_status
+from subprocess import call
 
 gv=gui_vacuum
 vs=vacuum_status
@@ -36,6 +37,9 @@ def done():
             prewarm(wt)
         if event =="stop":
             print("dovrebbe fermare la fase di vuoto in qualunque punto del ciclo ")
+        if event =="shutdown":
+            print ("spegimento raspberry")
+            sudo_halt()
 
 def vacuum_on(vacuum_time,soldier_time,event,values):
     if pm.vacuum_valve.value == 0 and pm.vacuum_coil.value == 0:
@@ -47,7 +51,7 @@ def vacuum_on(vacuum_time,soldier_time,event,values):
     pm.vacuum_coil_on()#coil_actuator_pomp.ON = LED(15) #pseudo
     if pm.vacuum_valve.value ==1 and pm.vacuum_coil.value ==1:
         for i in reversed(range(1, int(vacuum_time))):
-            gv.progress_bar_vac.UpdateBar((i-1) + 1)
+            gv.progress_bar_vac.UpdateBar(i-1)
             time.sleep(1 - vacuum_time % 1) # sleep until a whole second boundary
             sys.stderr.write('\r%4d' % i)
     print ("fine vuoto - spegnimento pompa") #DISATTIVAZIONE SOLENOIDE ELETTROVALVOLA RITEGNO E SOLENOIDE TELERUTTORE POMPA con ritardo
@@ -66,7 +70,7 @@ def soldier_on(soldier_time):
     pm.soldier_coil_on()
     if pm.soldier_valve.value ==1 and pm.soldier_coil.value ==1:  #coil_actuator_soldier.ON = LED(18) #pseudo
         for i in reversed(range(1, int(soldier_time))):
-            gv.progress_bar_sig.UpdateBar((i-1) + 1)
+            gv.progress_bar_sig.UpdateBar(i-1)
             time.sleep(1 - soldier_time % 1) # sleep until a whole second boundary
             sys.stderr.write('\r%4d' % i)
     else:
@@ -90,7 +94,7 @@ def prewarm(prewarm_time):
     pm.vacuum_coil_on()
     if pm.vacuum_coil.value == 1: #coil_actuator_pomp.ON = LED(15) #pseudo
         for i in reversed(range(1, int(prewarm_time))):
-            gv.progress_bar_pre.UpdateBar((i-1) + 1)
+            gv.progress_bar_pre.UpdateBar(i-1)
             time.sleep(1 - prewarm_time % 1) # sleep until a whole second boundary
             sys.stderr.write('\r%4d' % i)
         #time.sleep(prewarm_time)
@@ -100,6 +104,8 @@ def prewarm(prewarm_time):
         print ("preriscaldamento terminata")
     else:
         print ("anomalia")
+def sudo_halt():       
+    call("sudo nohup shutdown -h now", shell=True)
 
 done()
 #start()
