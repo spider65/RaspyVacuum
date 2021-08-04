@@ -12,7 +12,7 @@ vs=vacuum_status
 start_mock=""
 vt=5
 st=5
-vs.micro_cop_on()    #vacuum_on(vt,st)
+  #vacuum_on(vt,st)
 
 def done():
     while True:
