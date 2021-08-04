@@ -12,7 +12,7 @@ vs=vacuum_status
 start_mock=""
 vt=5
 st=5
-if vs.micro_cop()
+if vs.micro_cop():
     print ("premuto")
     vacuum_on(vt,st)
 
