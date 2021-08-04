@@ -12,7 +12,8 @@ vs=vacuum_status
 start_mock=""
 vt=5
 st=5
-vs.micro_cop.wait_for_press()  #vacuum_on(vt,st)
+vs.micro_cop.wait_for_press()
+print("premuto") #vacuum_on(vt,st)
 
 def done():
     while True:
