@@ -13,7 +13,7 @@ layout = [
             [
                 sg.Frame(layout=([[
 
-                    sg.Button(("STOP POMPA"),key="start", size=(12,5),font=("orbitron", 15), button_color=("white","red")),
+                    sg.Button(("STOP POMPA"),key="stop", size=(12,5),font=("orbitron", 15), button_color=("white","red")),
                 ]]), title="POMPA",font=("orbitron", 12), pad=(5, 5)),
                 sg.Frame(layout=([[
                     sg.Button('PREWARM', key="on-warm-pump", disabled=False, size=(12, 5),font=("orbitron", 15), tooltip="accende la pompa per riscaldamento")
