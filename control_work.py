@@ -29,7 +29,8 @@ def done():
         if event =="shutdown":
             print ("spegimento raspberry")
             sudo_halt()
-    vs.micro_cop.when_pressed=vacuum_on        
+    pass        
+    vs.micro_cop.when_pressed=vacuum_on
 
 def vacuum_on(vt,st): #vacuum_time,soldier_time):
     if vs.vacuum_valve.value == 0 and vs.vacuum_coil.value == 0:
