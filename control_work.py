@@ -13,7 +13,7 @@ start_mock=""
 vt=5
 st=5
 
-def done():
+def done(self):
     while True:
         event, values= gv.win.Read(timeout=0.1)
         value=values
@@ -28,7 +28,7 @@ def done():
         if event =="shutdown":
             print ("spegimento raspberry")
             sudo_halt()
-        pass
+
 
 
 def vacuum_on(vt,st): #vacuum_time,soldier_time):
@@ -53,7 +53,7 @@ def vacuum_on(vt,st): #vacuum_time,soldier_time):
     if vs.vacuum_coil.value ==0:
          #coil_actuator_pomp.OFF = LED(15) #pseudo
         soldier_on(st)
-        
+
 vs.micro_cop.when_pressed=vacuum_on
 
 def soldier_on(soldier_time):
@@ -98,9 +98,3 @@ def prewarm(prewarm_time):
         print ("anomalia")
 def sudo_halt():
     call("sudo nohup shutdown -h now", shell=True)
-
-
-
-
-done()
-#start()
