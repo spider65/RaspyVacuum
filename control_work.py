@@ -28,11 +28,11 @@ def done():
         if event =="shutdown":
             print ("spegimento raspberry")
             sudo_halt()
-    return vt1,st1
+    return vt, st
 
 def vacuum_on(): #vacuum_time,soldier_time):
-    vt1=4
-    st1=4
+    vt1=vt
+    st1=st
     if vs.vacuum_valve.value == 0 and vs.vacuum_coil.value == 0:
         print("inizio vuoto - accensione pompa")
     else:
