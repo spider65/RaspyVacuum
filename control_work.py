@@ -28,7 +28,7 @@ def done():
         if event =="shutdown":
             print ("spegimento raspberry")
             sudo_halt()
-        return vt,st
+    return vt,st
 
 def vacuum_on(): #vacuum_time,soldier_time):
     vt=vt
