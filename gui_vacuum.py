@@ -1,8 +1,6 @@
 import PySimpleGUI as sg
-import config
 import sys
 import time
-import config
 from gpiozero import LED
 from signal import pause
 

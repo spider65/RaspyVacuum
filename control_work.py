@@ -1,7 +1,5 @@
 import sys
 import time
-import config
-from gpiozero import LED
 from signal import pause
 import gui_vacuum
 import vacuum_status
@@ -55,7 +53,7 @@ def vacuum_on(): #vacuum_time,soldier_time):
          #coil_actuator_pomp.OFF = LED(15) #pseudo
         soldier_on(st1)
 
-vs.micro_cop.when_pressed=vacuum_on
+vs.micro_cop.when_pressed = vacuum_on
 
 def soldier_on(soldier_time):
     print ("inizio sigillatura, accensione saldatore")  #ATTIVAZIONE SOLENOIDE SISTEMA SALDATURA + SOLENOIDE BOBINA TRAFORMATORE RESISTENZE

@@ -1,6 +1,5 @@
 import sys
 import time
-import config
 from gpiozero import LED
 from signal import pause
 import gui_vacuum

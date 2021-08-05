@@ -1,8 +1,5 @@
 #file per la lettura dello status dei pin del gpio
-from gpiozero import LED
-from gpiozero import Button
-from time import sleep
-from gpiozero import Device
+from gpiozero import LED, Button
 
 #pin35 per segnale relay vaccum valve
 vacuum_valve= LED("19")
