@@ -36,6 +36,7 @@ def vacuum_on(): #vacuum_time,soldier_time):
         value=values
         vt=value['vacuum-time']
         st=value['soldier-time']
+        wt=value['warm-pump-time']
     if vs.vacuum_valve.value == 0 and vs.vacuum_coil.value == 0:
         print("inizio vuoto - accensione pompa")
     else:
