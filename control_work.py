@@ -52,7 +52,7 @@ def vacuum_on(vacuum_time,soldier_time):
     if vs.vacuum_coil.value ==0:
          #coil_actuator_pomp.OFF = LED(15) #pseudo
         soldier_on(st)
-vs.micro_cop.when_pressed=vacuum_on
+vs.micro_cop.when_pressed=vacuum_on(vt,st)
 
 def soldier_on(soldier_time):
     print ("inizio sigillatura, accensione saldatore")  #ATTIVAZIONE SOLENOIDE SISTEMA SALDATURA + SOLENOIDE BOBINA TRAFORMATORE RESISTENZE
