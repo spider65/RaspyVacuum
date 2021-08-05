@@ -53,7 +53,7 @@ def vacuum_on(vt,st): #vacuum_time,soldier_time):
     if vs.vacuum_coil.value ==0:
          #coil_actuator_pomp.OFF = LED(15) #pseudo
         soldier_on(st)
-    pass    
+        
 vs.micro_cop.when_pressed=vacuum_on
 
 def soldier_on(soldier_time):
