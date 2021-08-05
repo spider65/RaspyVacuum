@@ -19,7 +19,6 @@ def done():
         value=values
         vt=value['vacuum-time']
         st=value['soldier-time']
-        #if event=="start": #questo evento va sostituito con lo when_pressed del coperchio
         wt=value['warm-pump-time']
         if event == 'on-warm-pump':
             print ("riscaldamento pompa ")
@@ -29,8 +28,8 @@ def done():
         if event =="shutdown":
             print ("spegimento raspberry")
             sudo_halt()
-        pass        
-    vs.micro_cop.when_pressed=vacuum_on
+        pass
+
 
 def vacuum_on(vt,st): #vacuum_time,soldier_time):
     if vs.vacuum_valve.value == 0 and vs.vacuum_coil.value == 0:
@@ -54,6 +53,8 @@ def vacuum_on(vt,st): #vacuum_time,soldier_time):
     if vs.vacuum_coil.value ==0:
          #coil_actuator_pomp.OFF = LED(15) #pseudo
         soldier_on(st)
+    pass    
+vs.micro_cop.when_pressed=vacuum_on
 
 def soldier_on(soldier_time):
     print ("inizio sigillatura, accensione saldatore")  #ATTIVAZIONE SOLENOIDE SISTEMA SALDATURA + SOLENOIDE BOBINA TRAFORMATORE RESISTENZE
