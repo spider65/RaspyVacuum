@@ -42,7 +42,7 @@ def vacuum_on(): #vacuum_time,soldier_time):
         vs.vacuum_coil_on()#coil_actuator_pomp.ON = LED(15) #pseudo
     if vs.vacuum_valve.value ==1 and vs.vacuum_coil.value ==1:
         for i in reversed(range(1, int(vt1))):
-            gv.progress_bar_vac.UpdateBar((i+1)-1)
+            gv.progress_bar_vac.UpdateBar(i-1)
             time.sleep(1 - vt % 1) # sleep until a whole second boundary
             sys.stderr.write('\r%4d' % i)
     print ("fine vuoto - spegnimento pompa") #DISATTIVAZIONE SOLENOIDE ELETTROVALVOLA RITEGNO E SOLENOIDE TELERUTTORE POMPA con ritardo
@@ -63,7 +63,7 @@ def soldier_on(soldier_time):
     vs.soldier_coil_on()
     if vs.soldier_valve.value ==1 and vs.soldier_coil.value ==1:  #coil_actuator_soldier.ON = LED(18) #pseudo
         for i in reversed(range(1, int(soldier_time))):
-            gv.progress_bar_sig.UpdateBar((i+1)-1)
+            gv.progress_bar_sig.UpdateBar(i-1)
             time.sleep(1 - soldier_time % 1) # sleep until a whole second boundary
             sys.stderr.write('\r%4d' % i)
     else:
@@ -87,7 +87,7 @@ def prewarm(prewarm_time):
     vs.vacuum_coil_on()
     if vs.vacuum_coil.value == 1: #coil_actuator_pomp.ON = LED(15) #pseudo
         for i in reversed(range(1, int(prewarm_time))):
-            gv.progress_bar_pre.UpdateBar((i+1)-1)
+            gv.progress_bar_pre.UpdateBar(i-1)
             time.sleep(1 - prewarm_time % 1) # sleep until a whole second boundary
             sys.stderr.write('\r%4d' % i)
         #time.sleep(prewarm_time)
