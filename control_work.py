@@ -31,8 +31,8 @@ def done():
     return vt,st
 
 def vacuum_on(): #vacuum_time,soldier_time):
-    vt=vt
-    st=st
+    vt1=vt
+    st1=st
     if vs.vacuum_valve.value == 0 and vs.vacuum_coil.value == 0:
         print("inizio vuoto - accensione pompa")
     else:
@@ -41,7 +41,7 @@ def vacuum_on(): #vacuum_time,soldier_time):
         vs.vacuum_valve_on() #solenoid_vacuum.ON = LED(12) #pseudo
         vs.vacuum_coil_on()#coil_actuator_pomp.ON = LED(15) #pseudo
     if vs.vacuum_valve.value ==1 and vs.vacuum_coil.value ==1:
-        for i in reversed(range(1, int(vt))):
+        for i in reversed(range(1, int(vt1))):
             gv.progress_bar_vac.UpdateBar(i-1)
             time.sleep(1 - vt % 1) # sleep until a whole second boundary
             sys.stderr.write('\r%4d' % i)
@@ -53,7 +53,7 @@ def vacuum_on(): #vacuum_time,soldier_time):
     vs.vacuum_coil_off()
     if vs.vacuum_coil.value ==0:
          #coil_actuator_pomp.OFF = LED(15) #pseudo
-        soldier_on(st)
+        soldier_on(st1)
 
 vs.micro_cop.when_pressed=vacuum_on
 
