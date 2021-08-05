@@ -12,9 +12,6 @@ vs=vacuum_status
 start_mock=""
 vt=5
 st=5
-def ciccio():
-    print("mario")
-
 
 def done():
     while True:
