@@ -29,6 +29,7 @@ def done():
         if event =="shutdown":
             print ("spegimento raspberry")
             sudo_halt()
+    vs.micro_cop.when_pressed=vacuum_on        
 
 def vacuum_on(vt,st): #vacuum_time,soldier_time):
     if vs.vacuum_valve.value == 0 and vs.vacuum_coil.value == 0:
@@ -97,7 +98,7 @@ def sudo_halt():
     call("sudo nohup shutdown -h now", shell=True)
 
 
-vs.micro_cop.when_pressed=vacuum_on
+
 
 done()
 #start()
