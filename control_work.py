@@ -13,22 +13,22 @@ start_mock=""
 vt=5
 st=5
 
-def done():
-    while True:
-        event, values= gv.win.Read(timeout=0.1)
-        value=values
-        vt=value['vacuum-time']
-        st=value['soldier-time']
-        wt=value['warm-pump-time']
-        if event == 'on-warm-pump':
-            print ("riscaldamento pompa ")
-            prewarm(wt)
-        if event =="stop":
-            print("dovrebbe fermare la fase di vuoto in qualunque punto del ciclo ")
-        if event =="shutdown":
-            print ("spegimento raspberry")
-            sudo_halt()
-    return vt, st
+#def done():
+while True:
+    event, values= gv.win.Read(timeout=0.1)
+    value=values
+    vt=value['vacuum-time']
+    st=value['soldier-time']
+    wt=value['warm-pump-time']
+    if event == 'on-warm-pump':
+        print ("riscaldamento pompa ")
+        prewarm(wt)
+    if event =="stop":
+        print("dovrebbe fermare la fase di vuoto in qualunque punto del ciclo ")
+    if event =="shutdown":
+        print ("spegimento raspberry")
+        sudo_halt()
+    #return vt, st
 
 def vacuum_on(): #vacuum_time,soldier_time):
     vt1=vt
@@ -100,4 +100,4 @@ def prewarm(prewarm_time):
 def sudo_halt():
     call("sudo nohup shutdown -h now", shell=True)
 
-done()
+#done()
