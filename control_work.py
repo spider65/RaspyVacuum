@@ -28,9 +28,14 @@ def done():
             sudo_halt()
     #return vt, st
 
-def vacuum_on(): #vacuum_time,soldier_time):
+# in questo metodo viene passato l'oggetto che è stato premuto
+def vacuum_on(input): #vacuum_time,soldier_time):
     vt1=vt
     st1=st
+    
+    # un esempio di utilizzo dell'oggetto premuto dentro la funzione:
+    print("When_pressed GPIO pin %s", input.pin)
+    
     if vs.vacuum_valve.value == 0 and vs.vacuum_coil.value == 0:
         print("inizio vuoto - accensione pompa")
     else:
@@ -93,6 +98,9 @@ def prewarm(prewarm_time):
     if vs.vacuum_coil.value == 0:
         #coil_actuator_pomp.OFF = LED(15) #pseudo
         print ("preriscaldamento terminata")
+
+        # forzo la chiusura del coperchio
+        # vs.micro_cop.pin.drive_low()
     else:
         print ("anomalia")
 def sudo_halt():

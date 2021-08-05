@@ -1,4 +1,12 @@
 #file per la lettura dello status dei pin del gpio
+
+# configurazione per mockare il gpio
+# from gpiozero import Device
+# from gpiozero.pins.mock import MockFactory
+# if Device.pin_factory is not None:
+#     Device.pin_factory.reset()
+# Device.pin_factory = MockFactory()
+
 from gpiozero import LED, Button
 
 #pin35 per segnale relay vaccum valve
@@ -11,7 +19,7 @@ soldier_valve= LED("26")
 soldier_coil= LED("20")
 
 #pin 40 per segnale micro coperchio
-micro_cop  = Button("21")
+micro_cop  = Button("21", pull_up=True)
 
 def vacuum_valve_on():
     vacuum_valve.on()
