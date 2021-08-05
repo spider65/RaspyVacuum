@@ -12,7 +12,6 @@ vs=vacuum_status
 start_mock=""
 vt=5
 st=5
-vs.micro_cop.when_pressed=vacuum_on
 
 def done():
     while True:
@@ -58,6 +57,7 @@ def vacuum_on(): #vacuum_time,soldier_time):
         if vs.vacuum_coil.value ==0:
              #coil_actuator_pomp.OFF = LED(15) #pseudo
             soldier_on(st)
+
 def soldier_on(soldier_time):
     print ("inizio sigillatura, accensione saldatore")  #ATTIVAZIONE SOLENOIDE SISTEMA SALDATURA + SOLENOIDE BOBINA TRAFORMATORE RESISTENZE
     vs.soldier_valve_on() #solenoid_soldier.ON = LED(11)
@@ -100,6 +100,9 @@ def prewarm(prewarm_time):
         print ("anomalia")
 def sudo_halt():
     call("sudo nohup shutdown -h now", shell=True)
+
+
+vs.micro_cop.when_pressed=vacuum_on
 
 done()
 #start()
