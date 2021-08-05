@@ -31,8 +31,8 @@ def done():
     return vt1,st1
 
 def vacuum_on(): #vacuum_time,soldier_time):
-    vt1=vt
-    st1=st
+    vt1=4
+    st1=4
     if vs.vacuum_valve.value == 0 and vs.vacuum_coil.value == 0:
         print("inizio vuoto - accensione pompa")
     else:
