@@ -38,8 +38,8 @@ def vacuum_on(): #vacuum_time,soldier_time):
     else:
         print("anomalia valvole vuoto")
     #st=soldier_time #solenoid_vacuum.ON = LED(12) #pseudo
-        vs.vacuum_valve_on() #solenoid_vacuum.ON = LED(12) #pseudo
-        vs.vacuum_coil_on()#coil_actuator_pomp.ON = LED(15) #pseudo
+    vs.vacuum_valve_on() #solenoid_vacuum.ON = LED(12) #pseudo
+    vs.vacuum_coil_on()#coil_actuator_pomp.ON = LED(15) #pseudo
     if vs.vacuum_valve.value ==1 and vs.vacuum_coil.value ==1:
         for i in reversed(range(1, int(vt1))):
             gv.progress_bar_vac.UpdateBar(i-1)
