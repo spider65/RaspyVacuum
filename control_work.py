@@ -31,8 +31,11 @@ def done():
     #return vt, st
 
 def vacuum_on(): #vacuum_time,soldier_time):
-    vt1=vt
-    st1=st
+    vt1=gv.FindElement("vacuum-time").Get()
+    st1=gv.FindElement("soldier-time").Get()
+    print(vt1,"vaccum time")
+    #vt1=vt
+    #st1=st
     if vs.vacuum_valve.value == 0 and vs.vacuum_coil.value == 0:
         print("inizio vuoto - accensione pompa")
     else:
@@ -42,7 +45,7 @@ def vacuum_on(): #vacuum_time,soldier_time):
     vs.vacuum_coil_on()#coil_actuator_pomp.ON = LED(15) #pseudo
     if vs.vacuum_valve.value ==1 and vs.vacuum_coil.value ==1:
         for i in reversed(range(1, int(vt1))):
-            gv.progress_bar_vac.UpdateBar(i-1)
+            gv.wprogress_bar_vac.UpdateBar(i-1)
             time.sleep(1 - vt % 1) # sleep until a whole second boundary
             sys.stderr.write('\r%4d' % i)
     print ("fine vuoto - spegnimento pompa") #DISATTIVAZIONE SOLENOIDE ELETTROVALVOLA RITEGNO E SOLENOIDE TELERUTTORE POMPA con ritardo
