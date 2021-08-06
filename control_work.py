@@ -51,7 +51,7 @@ def vacuum_on(input): #vacuum_time,soldier_time):
         gv.progress_bar_vac.update_bar(i-1)
         time.sleep(1 - vt % 1) # sleep until a whole second boundary
         sys.stderr.write('\r%4d' % i)
-        gv.progress_bar_vac.update_bar(10)
+    gv.progress_bar_vac.update_bar(10)
     print ("fine vuoto - spegnimento pompa") #DISATTIVAZIONE SOLENOIDE ELETTROVALVOLA RITEGNO E SOLENOIDE TELERUTTORE POMPA con ritardo
     vs.vacuum_valve_off() #solenoid_vacuum.OFF = LED(12) #pseudo
     print("fine vuoto - spegnimento pompa")
