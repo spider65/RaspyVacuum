@@ -33,7 +33,7 @@ def done():
     #return vt, st
 
 # in questo metodo viene passato l'oggetto che è stato premuto
-def vacuum_on(vt,st): #vacuum_time,soldier_time):
+def vacuum_on(input): #vacuum_time,soldier_time):
     global vt, st
     if vs.vacuum_valve.value == 0 and vs.vacuum_coil.value == 0:
         print("inizio vuoto - accensione pompa")
