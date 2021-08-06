@@ -4,7 +4,7 @@ import config
 from gpiozero import LED
 from signal import pause
 import gui_vacuum
-import vacuum_status1
+import vacuum_status
 from subprocess import call
 
 gv=gui_vacuum
