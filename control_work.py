@@ -36,20 +36,18 @@ def done():
 def vacuum_on(input): #vacuum_time,soldier_time):
     #vt = gv.win.FindElement('vacuum-time').Get()
     global vt, st
-    vt1 = vt
-    st1=st
     if vs.vacuum_valve.value == 0 and vs.vacuum_coil.value == 0:
         print("inizio vuoto - accensione pompa")
     else:
         print("anomalia valvole vuoto")
         return
     #st=soldier_time #solenoid_vacuum.ON = LED(12) #pseudo
-    
+
     vs.vacuum_valve_on() #solenoid_vacuum.ON = LED(12) #pseudo
     vs.vacuum_coil_on()#coil_actuator_pomp.ON = LED(15) #pseudo
     print("vacuum valve " + str(vs.vacuum_valve.value))
     print("vacuum valve " + str(vs.vacuum_coil.value))
-    for i in reversed(range(1, int(vt1))):
+    for i in reversed(range(1, int(vt))):
         gv.progress_bar_vac.UpdateBar(i-1)
         time.sleep(1 - vt % 1) # sleep until a whole second boundary
         sys.stderr.write('\r%4d' % i)
@@ -59,7 +57,7 @@ def vacuum_on(input): #vacuum_time,soldier_time):
     time.sleep(1)
     vs.vacuum_coil_off()
     #coil_actuator_pomp.OFF = LED(15) #pseudo
-    soldier_on(st1)
+    soldier_on(st)
 
     # simula l'apertura del coperchio
     # vs.micro_cop.pin.drive_high()
