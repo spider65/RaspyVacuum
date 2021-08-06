@@ -30,13 +30,10 @@ def done():
         if event =="shutdown":
             print ("spegimento raspberry")
             sudo_halt()
-    vs.micro_cop.when_pressed=vacuum_on
     #return vt, st
 
 # in questo metodo viene passato l'oggetto che è stato premuto
-def vacuum_on(input): #vacuum_time,soldier_time):
-    #vt = gv.win.FindElement('vacuum-time').Get()
-    gv.progress_bar_vac.update_bar(10)
+def vacuum_on(vt,st)#input): #vacuum_time,soldier_time):
     global vt, st
     if vs.vacuum_valve.value == 0 and vs.vacuum_coil.value == 0:
         print("inizio vuoto - accensione pompa")
@@ -50,7 +47,7 @@ def vacuum_on(input): #vacuum_time,soldier_time):
     print("vacuum valve " + str(vs.vacuum_coil.value))
     for i in reversed(range(1, int(vt))):
         print ("conto alla rovescia")
-        #gv.progress_bar_vac.update_bar(i-1)
+        gv.progress_bar_vac.update_bar(i-1)
         time.sleep(1 - vt % 1) # sleep until a whole second boundary
         sys.stderr.write('\r%4d' % i)
 
@@ -62,10 +59,7 @@ def vacuum_on(input): #vacuum_time,soldier_time):
     #coil_actuator_pomp.OFF = LED(15) #pseudo
     soldier_on(st)
 
-    # simula l'apertura del coperchio
-    # vs.micro_cop.pin.drive_high()
-
-#vs.micro_cop.when_pressed=vacuum_on
+vs.micro_cop.when_pressed=vacuum_on
 
 def soldier_on(soldier_time):
     print ("inizio sigillatura, accensione saldatore")  #ATTIVAZIONE SOLENOIDE SISTEMA SALDATURA + SOLENOIDE BOBINA TRAFORMATORE RESISTENZE
