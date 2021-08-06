@@ -49,7 +49,7 @@ def vacuum_on(input): #vacuum_time,soldier_time):
     print("vacuum valve " + str(vs.vacuum_coil.value))
     for i in reversed(range(1, int(vt))):
         print ("conto alla rovescia")
-        gv.progress_bar_vac.UpdateBar(i-1)
+        gv.progress_bar_vac.UpdateBar(10)#(i-1)
         time.sleep(1 - vt % 1) # sleep until a whole second boundary
         sys.stderr.write('\r%4d' % i)
     print ("fine vuoto - spegnimento pompa") #DISATTIVAZIONE SOLENOIDE ELETTROVALVOLA RITEGNO E SOLENOIDE TELERUTTORE POMPA con ritardo
