@@ -46,7 +46,6 @@ def vacuum_on(input): #vacuum_time,soldier_time):
     print("vacuum valve " + str(vs.vacuum_valve.value))
     print("vacuum valve " + str(vs.vacuum_coil.value))
     for i in reversed(range(1, int(vt))):
-        print ("conto alla rovescia")
         gv.progress_bar_vac.update_bar(i-1)
         time.sleep(1 - vt % 1) # sleep until a whole second boundary
         sys.stderr.write('\r%4d' % i)
