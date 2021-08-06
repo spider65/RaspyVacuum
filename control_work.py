@@ -18,7 +18,7 @@ def done():
     while True:
         event, values= gv.win.Read(timeout=0.1)
         value=values
-        #global vt, st
+        global vt, st
         vt=value['vacuum-time']
         st=value['soldier-time']
         wt=value['warm-pump-time']
