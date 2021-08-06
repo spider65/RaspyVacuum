@@ -11,8 +11,8 @@ gv=gui_vacuum
 vs=vacuum_status
 start_mock=""
 global vt, st
-vt = 5
-st = 5
+vt = 30
+st = 15
 
 def done():
     while True:
@@ -42,14 +42,13 @@ def vacuum_on(input): #vacuum_time,soldier_time):
         print("anomalia valvole vuoto")
         return
     #st=soldier_time #solenoid_vacuum.ON = LED(12) #pseudo
-
     vs.vacuum_valve_on() #solenoid_vacuum.ON = LED(12) #pseudo
     vs.vacuum_coil_on()#coil_actuator_pomp.ON = LED(15) #pseudo
     print("vacuum valve " + str(vs.vacuum_valve.value))
     print("vacuum valve " + str(vs.vacuum_coil.value))
     for i in reversed(range(1, int(vt))):
         print ("conto alla rovescia")
-        gv.progress_bar_vac.UpdateBar(10)#(i-1)
+        gv.progress_bar_vac.update_bar(i-1)
         time.sleep(1 - vt % 1) # sleep until a whole second boundary
         sys.stderr.write('\r%4d' % i)
     print ("fine vuoto - spegnimento pompa") #DISATTIVAZIONE SOLENOIDE ELETTROVALVOLA RITEGNO E SOLENOIDE TELERUTTORE POMPA con ritardo
