@@ -30,6 +30,7 @@ def done():
         if event =="shutdown":
             print ("spegimento raspberry")
             sudo_halt()
+    vs.micro_cop.when_pressed=vacuum_on
     #return vt, st
 
 # in questo metodo viene passato l'oggetto che è stato premuto
@@ -64,7 +65,7 @@ def vacuum_on(input): #vacuum_time,soldier_time):
     # simula l'apertura del coperchio
     # vs.micro_cop.pin.drive_high()
 
-vs.micro_cop.when_pressed=vacuum_on
+#vs.micro_cop.when_pressed=vacuum_on
 
 def soldier_on(soldier_time):
     print ("inizio sigillatura, accensione saldatore")  #ATTIVAZIONE SOLENOIDE SISTEMA SALDATURA + SOLENOIDE BOBINA TRAFORMATORE RESISTENZE
