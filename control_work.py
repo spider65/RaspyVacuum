@@ -32,10 +32,10 @@ def done():
 
 def vacuum_on(): #vacuum_time,soldier_time):
     event, values= gv.win.Read(timeout=0.1)
-    value=values
+    """value=values
     vt1=value['vacuum-time']
     st1=value['soldier-time']
-    print(vt1,"vaccum time")
+    print(vt1,"vaccum time")"""
     #vt1=vt
     #st1=st
     if vs.vacuum_valve.value == 0 and vs.vacuum_coil.value == 0:
