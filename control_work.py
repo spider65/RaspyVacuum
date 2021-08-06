@@ -31,10 +31,10 @@ def done():
     #return vt, st
 
 def vacuum_on(): #vacuum_time,soldier_time):
-    slider_vacuum =gv.win.FindElement["vacuum_time"]
-    slider_soldier=gv.win.FindElement["soldier-time"]
-    vt1=slider_vacuum
-    st1=slider_soldier
+    event, values= gv.win.Read(timeout=0.1)
+    value=values
+    vt1=value['vacuum-time']
+    st1=value['soldier-time']
     print(vt1,"vaccum time")
     #vt1=vt
     #st1=st
