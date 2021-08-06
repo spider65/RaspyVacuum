@@ -1,14 +1,16 @@
 import sys
 import time
+import config
+from gpiozero import LED
 from signal import pause
 import gui_vacuum
-import vacuum_status
+import vacuum_status1
 from subprocess import call
 
 gv=gui_vacuum
 vs=vacuum_status
 start_mock=""
-vt=5
+vt=10
 st=5
 
 def done():
@@ -28,14 +30,9 @@ def done():
             sudo_halt()
     #return vt, st
 
-# in questo metodo viene passato l'oggetto che è stato premuto
-def vacuum_on(input): #vacuum_time,soldier_time):
+def vacuum_on(): #vacuum_time,soldier_time):
     vt1=vt
     st1=st
-    
-    # un esempio di utilizzo dell'oggetto premuto dentro la funzione:
-    print("When_pressed GPIO pin %s", input.pin)
-    
     if vs.vacuum_valve.value == 0 and vs.vacuum_coil.value == 0:
         print("inizio vuoto - accensione pompa")
     else:
@@ -58,7 +55,7 @@ def vacuum_on(input): #vacuum_time,soldier_time):
          #coil_actuator_pomp.OFF = LED(15) #pseudo
         soldier_on(st1)
 
-vs.micro_cop.when_pressed = vacuum_on
+vs.micro_cop.when_pressed=vacuum_on
 
 def soldier_on(soldier_time):
     print ("inizio sigillatura, accensione saldatore")  #ATTIVAZIONE SOLENOIDE SISTEMA SALDATURA + SOLENOIDE BOBINA TRAFORMATORE RESISTENZE
@@ -98,9 +95,6 @@ def prewarm(prewarm_time):
     if vs.vacuum_coil.value == 0:
         #coil_actuator_pomp.OFF = LED(15) #pseudo
         print ("preriscaldamento terminata")
-
-        # forzo la chiusura del coperchio
-        # vs.micro_cop.pin.drive_low()
     else:
         print ("anomalia")
 def sudo_halt():
