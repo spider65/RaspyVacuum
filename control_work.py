@@ -8,13 +8,15 @@ from subprocess import call
 gv=gui_vacuum
 vs=vacuum_status
 start_mock=""
-vt=5
+global vt, st
+vt = 5
 st=5
 
 def done():
     while True:
         event, values= gv.win.Read(timeout=0.1)
         value=values
+        global vt, st
         vt=value['vacuum-time']
         st=value['soldier-time']
         wt=value['warm-pump-time']
@@ -30,7 +32,9 @@ def done():
 
 # in questo metodo viene passato l'oggetto che è stato premuto
 def vacuum_on(input): #vacuum_time,soldier_time):
-    vt1=vt
+    #vt = gv.win.FindElement('vacuum-time').Get()
+    global vt, st
+    vt1 = vt
     st1=st
     
     # un esempio di utilizzo dell'oggetto premuto dentro la funzione:
@@ -40,23 +44,27 @@ def vacuum_on(input): #vacuum_time,soldier_time):
         print("inizio vuoto - accensione pompa")
     else:
         print("anomalia valvole vuoto")
+        return
     #st=soldier_time #solenoid_vacuum.ON = LED(12) #pseudo
-        vs.vacuum_valve_on() #solenoid_vacuum.ON = LED(12) #pseudo
-        vs.vacuum_coil_on()#coil_actuator_pomp.ON = LED(15) #pseudo
-    if vs.vacuum_valve.value ==1 and vs.vacuum_coil.value ==1:
-        for i in reversed(range(1, int(vt1))):
-            gv.progress_bar_vac.UpdateBar(i-1)
-            time.sleep(1 - vt % 1) # sleep until a whole second boundary
-            sys.stderr.write('\r%4d' % i)
+    
+    vs.vacuum_valve_on() #solenoid_vacuum.ON = LED(12) #pseudo
+    vs.vacuum_coil_on()#coil_actuator_pomp.ON = LED(15) #pseudo
+    print("vacuum valve " + str(vs.vacuum_valve.value))
+    print("vacuum valve " + str(vs.vacuum_coil.value))
+    for i in reversed(range(1, int(vt1))):
+        gv.progress_bar_vac.UpdateBar(i-1)
+        time.sleep(1 - vt % 1) # sleep until a whole second boundary
+        sys.stderr.write('\r%4d' % i)
     print ("fine vuoto - spegnimento pompa") #DISATTIVAZIONE SOLENOIDE ELETTROVALVOLA RITEGNO E SOLENOIDE TELERUTTORE POMPA con ritardo
     vs.vacuum_valve_off() #solenoid_vacuum.OFF = LED(12) #pseudo
-    if vs.vacuum_valve.value ==0:
-        print ("fine vuoto - spegnimento pompa")
+    print("fine vuoto - spegnimento pompa")
     time.sleep(1)
     vs.vacuum_coil_off()
-    if vs.vacuum_coil.value ==0:
-         #coil_actuator_pomp.OFF = LED(15) #pseudo
-        soldier_on(st1)
+    #coil_actuator_pomp.OFF = LED(15) #pseudo
+    soldier_on(st1)
+
+    # simula l'apertura del coperchio
+    # vs.micro_cop.pin.drive_high()
 
 vs.micro_cop.when_pressed = vacuum_on
 
@@ -99,11 +107,13 @@ def prewarm(prewarm_time):
         #coil_actuator_pomp.OFF = LED(15) #pseudo
         print ("preriscaldamento terminata")
 
-        # forzo la chiusura del coperchio
+        # simulo la chiusura del coperchio
         # vs.micro_cop.pin.drive_low()
     else:
         print ("anomalia")
+
 def sudo_halt():
+    # questo funziona solo su linux e solo se non devi mettere la password ma per pi0 va bene
     call("sudo nohup shutdown -h now", shell=True)
 
 done()
