@@ -12,7 +12,7 @@ vs=vacuum_status
 start_mock=""
 global vt, st
 vt = 5
-st=5
+st = 5
 
 def done():
     while True:
@@ -48,6 +48,7 @@ def vacuum_on(input): #vacuum_time,soldier_time):
     print("vacuum valve " + str(vs.vacuum_valve.value))
     print("vacuum valve " + str(vs.vacuum_coil.value))
     for i in reversed(range(1, int(vt))):
+        print ("conto alla rovescia")
         gv.progress_bar_vac.UpdateBar(i-1)
         time.sleep(1 - vt % 1) # sleep until a whole second boundary
         sys.stderr.write('\r%4d' % i)
