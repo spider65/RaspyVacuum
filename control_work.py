@@ -31,8 +31,8 @@ def done():
     #return vt, st
 
 def vacuum_on(): #vacuum_time,soldier_time):
-    vt1=gv.FindElement("vacuum-time").Get()
-    st1=gv.FindElement("soldier-time").Get()
+    vt1=gv.win.FindElement("vacuum-time").Get()
+    st1=gv.win.FindElement("soldier-time").Get()
     print(vt1,"vaccum time")
     #vt1=vt
     #st1=st
