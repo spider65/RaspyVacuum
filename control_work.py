@@ -31,7 +31,7 @@ def done():
     #return vt, st
 
 def vacuum_on(): #vacuum_time,soldier_time):
-    event, values= gv.win.Read(timeout=0.1)
+    #event, values= gv.win.Read(timeout=0.1)
     """value=values
     vt1=value['vacuum-time']
     st1=value['soldier-time']
