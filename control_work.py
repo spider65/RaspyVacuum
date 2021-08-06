@@ -35,6 +35,7 @@ def done():
 # in questo metodo viene passato l'oggetto che è stato premuto
 def vacuum_on(input): #vacuum_time,soldier_time):
     #vt = gv.win.FindElement('vacuum-time').Get()
+    gv.progress_bar_vac.update_bar(10)
     global vt, st
     if vs.vacuum_valve.value == 0 and vs.vacuum_coil.value == 0:
         print("inizio vuoto - accensione pompa")
@@ -48,10 +49,10 @@ def vacuum_on(input): #vacuum_time,soldier_time):
     print("vacuum valve " + str(vs.vacuum_coil.value))
     for i in reversed(range(1, int(vt))):
         print ("conto alla rovescia")
-        gv.progress_bar_vac.update_bar(i-1)
+        #gv.progress_bar_vac.update_bar(i-1)
         time.sleep(1 - vt % 1) # sleep until a whole second boundary
         sys.stderr.write('\r%4d' % i)
-    gv.progress_bar_vac.update_bar(10)
+
     print ("fine vuoto - spegnimento pompa") #DISATTIVAZIONE SOLENOIDE ELETTROVALVOLA RITEGNO E SOLENOIDE TELERUTTORE POMPA con ritardo
     vs.vacuum_valve_off() #solenoid_vacuum.OFF = LED(12) #pseudo
     print("fine vuoto - spegnimento pompa")
