@@ -16,7 +16,7 @@ st = 15
 
 def done():
     while True:
-        event, values= gv.win.Read(timeout=None)
+        event, values= gv.win.Read(timeout=0.01)
         sp=gv.stato_pompa.get()
         value=values
         #print (value, sp)
@@ -63,11 +63,6 @@ def vacuum_on(input): #vacuum_time,soldier_time):
     #coil_actuator_pomp.OFF = LED(15) #pseudo
     soldier_on(st)
 
-
-#vs.micro_cop.when_pressed=vacuum_on
-if vs.micro_cop.when_pressed:
-    gv.stato_pompa.Update('ON', text_color='white', background_color='red')
-
 def soldier_on(soldier_time):
     print ("inizio sigillatura, accensione saldatore")  #ATTIVAZIONE SOLENOIDE SISTEMA SALDATURA + SOLENOIDE BOBINA TRAFORMATORE RESISTENZE
     vs.soldier_valve_on() #solenoid_soldier.ON = LED(11)
@@ -103,6 +98,8 @@ def prewarm(prewarm_time):
             sys.stderr.write('\r%4d' % i)
         #time.sleep(prewarm_time)
     vs.vacuum_coil_off()
+    gv.stato_pompa.update('OFF', text_color='red', background_color='white')
+
     if vs.vacuum_coil.value == 0:
         #coil_actuator_pomp.OFF = LED(15) #pseudo
         print ("preriscaldamento terminata")
@@ -111,7 +108,12 @@ def prewarm(prewarm_time):
         # vs.micro_cop.pin.drive_low()
     else:
         print ("anomalia")
-    gv.stato_pompa.Update('OFF', text_color='red', background_color='white')
+
+
+def update_pompa():
+     gv.stato_pompa.update('ON', text_color='white', background_color='red')
+
+vs.micro_cop.when_pressed= update_pompa
 
 def sudo_halt():
     # questo funziona solo su linux e solo se non devi mettere la password ma per pi0 va bene
