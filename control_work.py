@@ -16,21 +16,26 @@ st = 15
 
 def done():
     while True:
-        event, values= gv.win.Read(timeout=0.1)
+        event, values= gv.win.Read(timeout=None)
+        sp=gv.stato_pompa.get()
         value=values
+        #print (value, sp)
         global vt, st
         vt=value['vacuum-time']
         st=value['soldier-time']
         wt=value['warm-pump-time']
+        if sp == 'ON':
+            vacuum_on(input)
         if event == 'on-warm-pump':
             print ("riscaldamento pompa ")
             prewarm(wt)
         if event =="stop":
             print("dovrebbe fermare la fase di vuoto in qualunque punto del ciclo ")
+            #vacuum_on(input)
         if event =="shutdown":
             print ("spegimento raspberry")
             sudo_halt()
-    #return vt, st
+        #return vt, st
 
 # in questo metodo viene passato l'oggetto che è stato premuto
 def vacuum_on(input): #vacuum_time,soldier_time):
@@ -58,7 +63,10 @@ def vacuum_on(input): #vacuum_time,soldier_time):
     #coil_actuator_pomp.OFF = LED(15) #pseudo
     soldier_on(st)
 
-vs.micro_cop.when_pressed=vacuum_on
+
+#vs.micro_cop.when_pressed=vacuum_on
+if vs.micro_cop.when_pressed:
+    gv.stato_pompa.Update('ON', text_color='white', background_color='red')
 
 def soldier_on(soldier_time):
     print ("inizio sigillatura, accensione saldatore")  #ATTIVAZIONE SOLENOIDE SISTEMA SALDATURA + SOLENOIDE BOBINA TRAFORMATORE RESISTENZE
@@ -103,6 +111,7 @@ def prewarm(prewarm_time):
         # vs.micro_cop.pin.drive_low()
     else:
         print ("anomalia")
+    gv.stato_pompa.Update('OFF', text_color='red', background_color='white')
 
 def sudo_halt():
     # questo funziona solo su linux e solo se non devi mettere la password ma per pi0 va bene

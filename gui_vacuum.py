@@ -10,9 +10,11 @@ layout = [
             [sg.Text('Vacuum Control by Tiranno', size=(25, 1), justification='center', font=("Helvetica", 15))],
             [
                 sg.Frame(layout=([[
-
-                    sg.Button(("STOP POMPA"),key="stop", size=(12,5),font=("orbitron", 15), button_color=("white","red")),
+                    sg.Button(("STOP POMPA"),key="stop", size=(5,5),font=("orbitron", 15), button_color=("white","red")),
                 ]]), title="POMPA",font=("orbitron", 12), pad=(5, 5)),
+                sg.Frame(layout=([[
+                    sg.Text(text="OFF",key="pompa", font=("orbitron", 40),background_color="white",text_color='red'),
+                ]]), title="STATOPOMPA",font=("orbitron", 12), pad=(5, 5)),
                 sg.Frame(layout=([[
                     sg.Button('PREWARM', key="on-warm-pump", disabled=False, size=(12, 5),font=("orbitron", 15), tooltip="accende la pompa per riscaldamento")
                 ]]), title="PREWARM", font=("orbitron", 12), pad=(5,5)),
@@ -45,3 +47,4 @@ win = sg.Window('Vaccum control By Tiranno', layout,size=(800,480), resizable = 
 progress_bar_vac = win['progressbar_vac']
 progress_bar_sig = win['progressbar_sig']
 progress_bar_pre = win['progressbar_pre']
+stato_pompa = win['pompa']
