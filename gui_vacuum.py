@@ -4,7 +4,7 @@ import time
 from gpiozero import LED
 from signal import pause
 
-sg.theme("LightBlue1")
+sg.theme("Light")
 layout = [
 
             [sg.Text('Vacuum Control by Tiranno', size=(25, 1), justification='center', font=("Helvetica", 15))],
